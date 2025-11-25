@@ -30,10 +30,17 @@ def add_to_cart(inventory, cart):
     product_id = int(input("Product Number: "))
     quantity = int(input("Quantity: "))
     if product_id > 0 and product_id <= len(inventory):
-        if product_id in cart:
-            cart[product_id] += quantity
+        if quantity <= inventory[product_id - 1]["stock"]:
+            if product_id in cart:
+                cart[product_id] += quantity
+            else:
+                cart[product_id] = quantity
         else:
-            cart[product_id] = quantity
+            print(
+                f"Sorry, only {inventory[product_id - 1]["stock"]} items are left in stock."
+            )
+    else:
+        print("Invalid Id")
 
 
 display_products(inventory)
