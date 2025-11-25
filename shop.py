@@ -16,12 +16,24 @@ inventory = [
     },
 ]
 
+cart = {}
+
 
 def display_products(inventory):
     for index, item in enumerate(inventory):
         print(
             f"Id: {index + 1}, Name: {item["name"]} - Price: {item["price"]} - Stock: {item["stock"]}"
         )
+
+
+def add_to_cart(inventory, cart):
+    product_id = int(input("Product Number: "))
+    quantity = int(input("Quantity: "))
+    if product_id > 0 and product_id <= len(inventory):
+        if product_id in cart:
+            cart[product_id] += quantity
+        else:
+            cart[product_id] = quantity
 
 
 display_products(inventory)
